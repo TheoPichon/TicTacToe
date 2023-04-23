@@ -12,20 +12,13 @@
 import React from "react";
 import { useState } from "react";
 
-function Square({ value, onSquareClick }) {
+function Square({ value, onSquareClick, className }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className={className} onClick={onSquareClick}>
       {value}
     </button>
   );
 }
-
-/**
- *
- * Si on est au mouvement actuel, et que le nombre de valeur enregistré dans square est égal au à la valeur
- * du mouvement actuel, alors afficher "vous êtes au mouvement actuel", sinon afficher moves
- *
- */
 
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
@@ -65,19 +58,55 @@ function Board({ xIsNext, squares, onPlay }) {
     <>
       <div className="status">{status}</div>
       <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        <Square
+          className={"square btlr"}
+          value={squares[0]}
+          onSquareClick={() => handleClick(0)}
+        />
+        <Square
+          className={"square"}
+          value={squares[1]}
+          onSquareClick={() => handleClick(1)}
+        />
+        <Square
+          className={"square btrr"}
+          value={squares[2]}
+          onSquareClick={() => handleClick(2)}
+        />
       </div>
       <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        <Square
+          className={"square"}
+          value={squares[3]}
+          onSquareClick={() => handleClick(3)}
+        />
+        <Square
+          className={"square"}
+          value={squares[4]}
+          onSquareClick={() => handleClick(4)}
+        />
+        <Square
+          className={"square"}
+          value={squares[5]}
+          onSquareClick={() => handleClick(5)}
+        />
       </div>
       <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        <Square
+          className={"square bblr"}
+          value={squares[6]}
+          onSquareClick={() => handleClick(6)}
+        />
+        <Square
+          className={"square"}
+          value={squares[7]}
+          onSquareClick={() => handleClick(7)}
+        />
+        <Square
+          className={"square bbrr"}
+          value={squares[8]}
+          onSquareClick={() => handleClick(8)}
+        />
       </div>
     </>
   );
@@ -122,14 +151,23 @@ export default function Game() {
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-      </div>
-      {/*       <div className="game-info">
+    <>
+      <header>
+        <h1>Tic Tac Toz</h1>
+      </header>
+      <div className="game">
+        <div className="game-board">
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares}
+            onPlay={handlePlay}
+          />
+        </div>
+        {/*       <div className="game-info">
         <ol>{moves}</ol>
       </div> */}
-    </div>
+      </div>
+    </>
   );
 }
 
